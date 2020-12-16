@@ -6,24 +6,40 @@ import Tours from "./Tours";
 const url = "https://josenauto.github.io/api/our-movies-api.json";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [loading, setLoading] = useState(true);
+  const [tours, setTours] = useState([]);
+
+  const fetchTours = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setLoading(false);
+      setTours(tours);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Tours />
+      </div>
+    );
+  }
+  
 }
 
 export default App;
