@@ -3,6 +3,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 import Tours from "./Tours";
+const url = "https://josenauto.github.io/api/our-movies-api.json";
 
 function App() {
   return (
