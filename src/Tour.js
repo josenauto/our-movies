@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
-const Tour = () => {
+const Tour = ({ id, image, info, price, name }) => {
   return (
     <div>
-      <h2>single tour component</h2>
+      <img src={image} alt={name} height="400" width="650" />
+      <h4>{name}</h4>
+      <h4>${price}</h4>
+      <p>{info}</p>
+      <button>not interested</button>
     </div>
   );
 };

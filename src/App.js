@@ -35,11 +35,10 @@ function App() {
   } else {
     return (
       <div>
-        <Tours />
+        <Tours tours={tours} />
       </div>
     );
   }
-  
 }
 
 export default App;
