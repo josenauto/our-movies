@@ -1,5 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Loading from "./Loading";
+import Tours from "./Tours";
 
 function App() {
   return (
