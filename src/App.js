@@ -3,6 +3,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
 import Tours from "./Tours";
+import { Button, Container, Row } from "react-bootstrap";
 const url = "https://josenauto.github.io/api/our-movies-api.json";
 
 function App() {
@@ -40,15 +41,17 @@ function App() {
   }
   if (tours.length === 0) {
     return (
-      <div>
-        <h2>no tours left</h2>
-        <button onClick={fetchTours}>refresh</button>
+      <div className="text-center">
+        <h2>No tours left</h2>
+        <Button onClick={fetchTours}>Refresh</Button>
       </div>
     );
   } else {
     return (
       <div>
-        <Tours tours={tours} removeTour={removeTour} />
+        <Container>
+          <Tours tours={tours} removeTour={removeTour} />
+        </Container>
       </div>
     );
   }
