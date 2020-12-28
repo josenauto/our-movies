@@ -1,28 +1,27 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
-import Tours from "./Tours";
-import { Button, Container, Row } from "react-bootstrap";
+import Movies from "./Movies";
+import { Button, Container } from "react-bootstrap";
 const url = "https://josenauto.github.io/api/our-movies-api.json";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [tours, setTours] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  const removeTour = (id) => {
-    const newTours = tours.filter((tour) => tour.id !== id);
-    setTours(newTours);
+  const removeMovie = (id) => {
+    const newMovies = movies.filter((movie) => movie.id !== id);
+    setMovies(newMovies);
   };
 
-  const fetchTours = async () => {
+  const fetchMovies = async () => {
     setLoading(true);
 
     try {
       const response = await fetch(url);
-      const tours = await response.json();
+      const movies = await response.json();
       setLoading(false);
-      setTours(tours);
+      setMovies(movies);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -30,7 +29,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchTours();
+    fetchMovies();
   }, []);
   if (loading) {
     return (
@@ -39,18 +38,18 @@ function App() {
       </div>
     );
   }
-  if (tours.length === 0) {
+  if (movies.length === 0) {
     return (
       <div className="text-center">
-        <h2>No tours left</h2>
-        <Button onClick={fetchTours}>Refresh</Button>
+        <h2>No movies left</h2>
+        <Button onClick={fetchMovies}>Refresh</Button>
       </div>
     );
   } else {
     return (
       <div>
         <Container>
-          <Tours tours={tours} removeTour={removeTour} />
+          <Movies movies={movies} removeMovie={removeMovie} />
         </Container>
       </div>
     );
